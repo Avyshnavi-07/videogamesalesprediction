@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Game Sales Prediction</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+  <div class="container">
+    
+    <div class="info-section">
+      <h1>Video Game Sales Predictor</h1>
+      <p>Enter game details below to estimate its <strong>global sales performance</strong> based on regional data and attributes.</p>
+      <div class="illustration"></div>
+    </div>
+
+    <div class="form-section">
+      <form action="/predict" method="post">
+        <h2>Predict Global Game Sales</h2>
+
+        <div class="form-grid">
+          <div>
+            <label>Platform</label>
+            <input type="text" name="platform" required>
+          </div>
+
+          <div>
+            <label>Genre</label>
+            <input type="text" name="genre" required>
+          </div>
+
+          <div>
+            <label>Publisher</label>
+            <input type="text" name="publisher" required>
+          </div>
+
+          <div>
+            <label>Year</label>
+            <input type="number" step="1" name="year" required>
+          </div>
+
+          <div>
+            <label>NA Sales</label>
+            <input type="number" step="0.01" name="na_sales" required>
+          </div>
+
+          <div>
+            <label>EU Sales</label>
+            <input type="number" step="0.01" name="eu_sales" required>
+          </div>
+
+          <div>
+            <label>JP Sales</label>
+            <input type="number" step="0.01" name="jp_sales" required>
+          </div>
+
+          <div>
+            <label>Other Sales</label>
+            <input type="number" step="0.01" name="other_sales" required>
+          </div>
+        </div>
+
+        <button type="submit">Predict</button>
+
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</body>
+</html>
